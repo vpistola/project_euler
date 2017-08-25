@@ -178,8 +178,8 @@ class Primes:
             self.__init__(max(n, 2 * self.maxn))
         return upto(self._list, n)
         
-time primes  = Primes(2 * million)
-
+#time primes  = Primes(2 * million)
+primes  = Primes(2 * million)
 
 class Factors:
     """Given `factors = Factors(million)`, we can do the following:
