@@ -1,3 +1,5 @@
+# These are Peter Norvig's utilities for Project Euler.
+
 from collections import defaultdict, deque, Counter, namedtuple, abc
 from fractions   import Fraction
 from functools   import lru_cache, wraps
