@@ -26,29 +26,16 @@ import itertools, utils
 
 prime_list = utils.prime_list_up_to_n(1000)
 
-'''
-def compute():
-    ans = []
-    def f(n, a, b): return n*n + a*n + b
-    for a in range(-999, 1000):
-        for b in range(2, 1000):
-            for n in itertools.count():
-                ans1 = f(n,a,b)
-                if ans1 > 0 and is_prime(ans1):
-                    ans.append((a,b))
-                return max(ans)    
-'''
-
 def compute():
     l = []
     def f(n, a, b): return n*n + a*n + b
     for a in range(-999, 1000):
         for b in range(2, 1000):
             l.append((a,b))
-    for n in itertools.count():
+    for i in itertools.count():
         for (a1, b1) in l:
-            ans = f(n,a1,b1)
-            if not is_prime(abs(ans)):
+            ans = f(i,a1,b1)
+            if ans > 0 and (not is_prime(ans)):
                 return (a1, b1)
 
                 
