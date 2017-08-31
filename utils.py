@@ -1,14 +1,19 @@
 # utilities for the project euler
+import itertools
 
-#def is_prime(n):
-#    if n==2 or n==3: 
-#        return True
-#    if n%2==0 or n<2: 
-#        return False
-#    for i in range(3,int(n**0.5)+1,2):   # only odd numbers
-#        if n%i==0:
-#            return False    
-#    return True
+def eratosthenes():
+    D = {}
+    yield 2
+    for q in itertools.islice(itertools.count(3), 0, None, 2):
+        p = D.pop(q, None)
+        if p is None:
+            D[q*q] = q
+            yield q
+        else:
+            x = p + q
+            while x in D or not (x&1):
+                x += p
+            D[x] = p
     
 def is_prime(n):
     return all(n % i != 0 for i in range(2, n))
@@ -34,3 +39,7 @@ def prime_list_up_to_n(n):
 			for j in range(i * i, len(result), i):
 				result[j] = False
 	return result
+    
+    
+    
+# end    
