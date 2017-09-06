@@ -1,6 +1,8 @@
 # utilities for the project euler
 import itertools
 
+def divisors(n): return list(i for i in range(1, n//2+1) if n%i == 0)
+
 def eratosthenes():
     D = {}
     yield 2
