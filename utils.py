@@ -17,9 +17,21 @@ def eratosthenes():
                 x += p
             D[x] = p
     
-def is_prime(n):
-    return all(n % i != 0 for i in range(2, n))
+
+def is_prime(x):
+	if x <= 1:
+		return False
+	elif x <= 3:
+		return True
+	elif x % 2 == 0:
+		return False
+	else:
+		for i in range(3, sqrt(x) + 1, 2):
+			if x % i == 0:
+				return False
+		return True
     
+
 def sqrt(x):
 	assert x >= 0
 	i = 1
