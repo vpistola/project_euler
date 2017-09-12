@@ -20,13 +20,13 @@ t1 = time.time()
 def is_pentagonal(n):
     return (1+(1+24*n)**0.5)/6 == int((1+(1+24*n)**0.5)/6)
 
-def is_hexagonal(n):
+def hexagonal(n):
     return n*(2*n - 1)
 
 n = 144
-while not is_pentagonal(is_hexagonal(n)):
+while not is_pentagonal(hexagonal(n)):
     n += 1
-print(is_hexagonal(n))
+print(hexagonal(n))
     
 t2 = time.time()
 print("Time elapsed:", t2 - t1, "seconds")
