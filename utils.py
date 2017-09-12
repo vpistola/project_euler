@@ -31,7 +31,11 @@ def is_prime(x):
 				return False
 		return True
     
-
+def isqrt(n):
+    "Integer square root (rounds down)."
+    return int(n ** 0.5)
+    
+    
 def sqrt(x):
 	assert x >= 0
 	i = 1
@@ -44,7 +48,8 @@ def sqrt(x):
 		i //= 2
 	return y
     
-    
+
+# prime list generator    
 def prime_list_up_to_n(n):
 	result = [True] * (n + 1)
 	result[0] = result[1] = False
@@ -55,6 +60,7 @@ def prime_list_up_to_n(n):
 	return result
     
     
+# prime list generator - alternative solution (slow for large n)
 def sieve(n):
     numbers = list(range(2, n+1))
     p = 2
@@ -70,6 +76,24 @@ def sieve(n):
             done = True
     return numbers
     
+    
+def prime_factors(n):
+    i = 2
+    factors = []
+    while i * i <= n:
+        if n % i:
+            i += 1
+        else:
+            n //= i
+            factors.append(i)
+    if n > 1:
+        factors.append(n)
+    return factors
+    
+
+def factors(n):    
+    return set(reduce(list.__add__, 
+                ([i, n//i] for i in range(1, int(n**0.5) + 1) if n % i == 0)))
     
 class Memoize:
     def __init__(self, f):
