@@ -54,7 +54,23 @@ def prime_list_up_to_n(n):
 				result[j] = False
 	return result
     
-
+    
+def sieve(n):
+    numbers = list(range(2, n+1))
+    p = 2
+    j = 0
+    done = False
+    while not done:
+        for i, n in enumerate(numbers):
+            if n % p == 0 and n!=p:
+                numbers.pop(i)
+        j += 1
+        p = numbers[j]
+        if p**2 > n:
+            done = True
+    return numbers
+    
+    
 class Memoize:
     def __init__(self, f):
         self.f = f
