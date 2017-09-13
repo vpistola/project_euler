@@ -16,41 +16,46 @@ Find the first four consecutive integers to have four distinct prime factors eac
 '''
 
 import time, utils
-from functools import reduce
-from collections import defaultdict
+from itertools import count
 
-#prime_list = utils.sieve(1000000)
+#prime_list = utils.sieve(10000)
 
 def compute():
-    #D = defaultdict(list)
-    #for n in range(1000000):
-    #   D[n] = utils.divisors(n)
-    pass
+    consecutives = []
+    i = 0
+    for n in count(647):
+        i += 1
+        #l = []
+        #l = prime_factors(n)
+        if len(prime_factors(n)) == 4: consecutives.append(n)  
+        if i == 4 and len(consecutives) == 4:
+            break
+        elif i == 4 and len(consecutives) < 4:
+            i = 0
+            consecutives = []
+        else:
+            continue
+    return consecutives
     
 def prime_factors(n):
     i = 2
-    factors = []
+    factors = set()
     while i * i <= n:
         if n % i:
             i += 1
         else:
             n //= i
-            factors.append(i)
+            factors.add(i)
     if n > 1:
-        factors.append(n)
+        factors.add(n)
     return factors
-
-_primes = [2]
-
-def factors(n):    
-    return set(reduce(list.__add__, 
-                ([i, n//i] for i in range(1, int(n**0.5) + 1) if n % i == 0)))
 
 if __name__ == "__main__":
     t1 = time.time()
-    print(factors(646))
+    print(compute())
+    #print(prime_factors(134043))
     t2 = time.time()
     print("Time elapsed:", t2 - t1, "seconds")
     
     
-# QED
+# END
