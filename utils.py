@@ -53,8 +53,8 @@ def sqrt(x):
 		i //= 2
 	return y   
 
-# prime list generator    
-def prime_list_up_to_n(n):
+# prime list generator up to number n   
+def upto(n):
 	result = [True] * (n + 1)
 	result[0] = result[1] = False
 	for i in range(sqrt(n) + 1):
@@ -62,6 +62,9 @@ def prime_list_up_to_n(n):
 			for j in range(i * i, len(result), i):
 				result[j] = False
 	return result
+    
+def list_primes(n):
+	return [i for (i, isprime) in enumerate(upto(n)) if isprime]
         
 # prime list generator - alternative solution (slow for large n)
 def sieve(n):
