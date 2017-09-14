@@ -66,21 +66,23 @@ def upto(n):
 def list_primes(n):
 	return [i for (i, isprime) in enumerate(upto(n)) if isprime]
         
-# prime list generator - alternative solution (slow for large n)
+# prime list generator
 def sieve(n):
-    numbers = list(range(2, n+1))
-    p = 2
-    j = 0
-    done = False
-    while not done:
-        for i, n in enumerate(numbers):
-            if n % p == 0 and n!=p:
-                numbers.pop(i)
-        j += 1
-        p = numbers[j]
-        if p**2 > n:
-            done = True
-    return numbers
+    '''Return all primes <= n.
+    >>> list(sieve(20))
+    [2, 3, 5, 7, 11, 13, 17, 19]
+    >>> len(list(sieve(1000000)))
+    78498
+    '''
+    np1 = n + 1
+    s = list(range(np1)) # leave off `list()` in Python 2
+    s[1] = 0
+    sqrtn = int(round(n**0.5))
+    for i in range(2, sqrtn + 1): # use `xrange()` in Python 2
+        if s[i]:
+            # next line:  use `xrange()` in Python 2
+            s[i*i: np1: i] = [0] * len(range(i*i, np1, i))
+    return filter(None, s)
    
 # Return a list of the numbers in the prime factorization of n.   
 def prime_factors(n):
